@@ -16,34 +16,35 @@
       </button>
     </div>
   </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="comment-filters">
+    <div class="all">
+      <button class="comment-filter-button">All</button>
+    </div>
+    <div class="mbti">
+      <button class="comment-filter-button">MBTI</button>
+    </div>
+    <div class="mbti">
+      <button class="comment-filter-button">Enneagram</button>
+    </div>
+    <div class="zodiac">
+      <button class="comment-filter-button">Zodiac</button>
+    </div>
+  </div>
+  <!-- SORT BUTTONS -->
+  <div class="comment-sort">
+    <div class="best">
+      <button class="comment-sort-button best-sort">best</button>
+    </div>
+    <div class="recent">
+      <button class="comment-sort-button recent-sort">recent</button>
+    </div>
+  </div>
+  <!-- COMMENT CARDS -->
   <div class="comment-main">
-    <!-- FILTER BUTTONS -->
-    <div class="comment-filters">
-      <div class="all">
-        <button class="comment-filter-button">All</button>
-      </div>
-      <div class="mbti">
-        <button class="comment-filter-button">MBTI</button>
-      </div>
-      <div class="mbti">
-        <button class="comment-filter-button">Enneagram</button>
-      </div>
-      <div class="zodiac">
-        <button class="comment-filter-button">Zodiac</button>
-      </div>
-    </div>
-    <!-- SORT BUTTONS -->
-    <div class="comment-sort">
-      <div class="best">
-        <button class="comment-sort-button best-sort">best</button>
-      </div>
-      <div class="recent">
-        <button class="comment-sort-button recent-sort">recent</button>
-      </div>
-    </div>
-    <!-- COMMENT CARDS -->
     <!-- ADD COMMENT -->
-    <div class="comment-card">
+    <div class="comment-card add">
       <div class="add-comment">
         <div class="comment-header">
           <div class="user-profile-image">
@@ -81,7 +82,9 @@
               <option value="ESTJ">ESTJ</option>
             </select>
             <select class="voting-enneagram" name="Enneagram">
-              <option value="" selected disabled>Enneagram</option>
+              <option style="background: #13a6a2" value="" selected>
+                Enneagram
+              </option>
               <option value="1w2">1w2</option>
               <option value="2w3">2w3</option>
               <option value="3w2">3w2</option>
@@ -131,56 +134,64 @@
         </div>
       </div>
     </div>
-    <!-- DISPLAY COMMENTS FROM COMMENT DATA ARRAY -->
-    <div class="comment-section">
-      <% for (let i = 0; i < commentData.length; i++) { %>
-      <div class="comment-card">
-        <div class="comment">
-          <div class="comment-header">
-            <div class="user-profile-image">
-              <img
-                class="profile-image"
-                src="http://esq.h-cdn.co/assets/17/10/1280x1280/square-1488906206-daniel-craig.jpg"
-                alt="user profile image"
-              />
-            </div>
-            <div class="user-name">
-              <h5 id="user-name"><%= commentData[i].name %></h5>
-            </div>
+  </div>
+  <!-- DISPLAY COMMENTS FROM COMMENT DATA ARRAY -->
+  <div class="comment-section">
+    <% for (let i = 0; i < commentData.length; i++) { %>
+    <div class="comment-card">
+      <div class="comment">
+        <div class="comment-header">
+          <div class="user-profile-image">
+            <img
+              class="profile-image"
+              src="http://esq.h-cdn.co/assets/17/10/1280x1280/square-1488906206-daniel-craig.jpg"
+              alt="user profile image"
+            />
           </div>
-          <div class="comment-body">
-            <div class="comment-title">
-              <h5><%= commentData[i].title %></h5>
-            </div>
-            <div class="voting">
-              <% if (commentData[i].mbti) { %>
+          <div class="user-name">
+            <h5 id="user-name"><%= commentData[i].name %></h5>
+          </div>
+        </div>
+        <div class="comment-body">
+          <div class="comment-title">
+            <h5><%= commentData[i].title %></h5>
+          </div>
+          <div class="voting">
+            <% if (commentData[i].mbti) { %>
 
-              <button style="opacity: 100%" class="voting-mbti">
-                <%= commentData[i].mbti %>
-              </button>
+            <button style="opacity: 100%" class="voting-mbti">
+              <%= commentData[i].mbti %>
+            </button>
 
-              <% } %> <% if (commentData[i].enneagram) { %>
+            <% } %> <% if (commentData[i].enneagram) { %>
 
-              <button style="opacity: 100%" class="voting-enneagram">
-                <%= commentData[i].enneagram %>
-              </button>
+            <button style="opacity: 100%" class="voting-enneagram">
+              <%= commentData[i].enneagram %>
+            </button>
 
-              <% } %> <% if (commentData[i].zodiac) { %>
+            <% } %> <% if (commentData[i].zodiac) { %>
 
-              <button style="opacity: 100%" class="voting-zodiac">
-                <%= commentData[i].zodiac %>
-              </button>
+            <button style="opacity: 100%" class="voting-zodiac">
+              <%= commentData[i].zodiac %>
+            </button>
 
-              <% } %>
-            </div>
-            <div class="comment-text">
-              <p><%= commentData[i].comment %></p>
-            </div>
+            <% } %>
+          </div>
+          <div class="comment-text">
+            <p><%= commentData[i].comment %></p>
+          </div>
+          <div class="heart-like">
+            <button class="heart-like-button">
+              <span class="material-icons"> favorite </span>
+            </button>
+            <span class="number-of-likes">
+              <p>79</p>
+            </span>
           </div>
         </div>
       </div>
-      <% } %>
     </div>
+    <% } %>
   </div>
 
   <script type="text/javascript">
@@ -190,12 +201,19 @@
       main.classList.toggle("ds-none");
     }
     function handleSubmit() {
+      //on submit the borders should glow #4edcd8 for 1 second
+      let commentInput = document.querySelector(".add");
+      commentInput.classList.add("glow-card");
+      setTimeout(() => {
+        commentInput.classList.remove("glow-card");
+      }, 1000);
+
       let comment = document.querySelector("#comment-input").value;
       let title = document.querySelector(".title-input").value;
       let mbti = document.querySelector("#voting-mbti").value;
       let enneagram = document.querySelector(".voting-enneagram").value;
       let zodiac = document.querySelector(".voting-zodiac").value;
-      let user = document.querySelector("#user-name").innerHTML;
+      let name = document.querySelector("#user-name").innerHTML;
       let profile = document.querySelector(".profile-image").src;
       let commentObj = {
         comment: comment,
@@ -203,7 +221,7 @@
         mbti: mbti,
         enneagram: enneagram,
         zodiac: zodiac,
-        user: user,
+        name: name,
         profile: profile,
       };
       //display the new comment along with mbti enneagram and zodiac if selected by user in the comment section of the page
@@ -284,6 +302,7 @@
       document.querySelector("#voting-mbti").style.opacity = "30%";
       document.querySelector(".voting-enneagram").style.opacity = "30%";
       document.querySelector(".voting-zodiac").style.opacity = "30%";
+      handleSendButton();
     }
     //make voting item visible when value is chosen
     let mbti = document.querySelector(".voting-mbti");
@@ -304,6 +323,119 @@
       if (zodiac.value != "") {
         zodiac.style.opacity = "100%";
       }
+    });
+
+    function handleSendButton() {
+      //comment-submit-button turns #4edcd8 when user selects  either mbti, enneagram, or zodiac or when user types in title or comment input field and turns back to #e0e0e0 when user deselects mbti, enneagram, or zodiac or when user deletes title or comment input field & is disabled when user does not select mbti, enneagram, or zodiac and does not type in title or comment input field
+      let commentSubmitButton = document.querySelector(
+        ".comment-submit-button"
+      );
+      let commentInput = document.querySelector("#comment-input");
+      let titleInput = document.querySelector(".title-input");
+      let mbtiInput = document.querySelector("#voting-mbti");
+      let enneagramInput = document.querySelector(".voting-enneagram");
+      let zodiacInput = document.querySelector(".voting-zodiac");
+      if (
+        mbtiInput.value != "" ||
+        enneagramInput.value != "" ||
+        zodiacInput.value != "" ||
+        commentInput.value != "" ||
+        titleInput.value != ""
+      ) {
+        commentSubmitButton.style.color = "#4edcd8";
+        commentSubmitButton.disabled = false;
+      } else {
+        commentSubmitButton.style.color = "#e0e0e0";
+        commentSubmitButton.disabled = true;
+      }
+      commentInput.addEventListener("input", function () {
+        if (
+          mbtiInput.value != "" ||
+          enneagramInput.value != "" ||
+          zodiacInput.value != "" ||
+          commentInput.value != "" ||
+          titleInput.value != ""
+        ) {
+          commentSubmitButton.style.color = "#4edcd8";
+          commentSubmitButton.disabled = false;
+        } else {
+          commentSubmitButton.style.color = "#e0e0e0";
+          commentSubmitButton.disabled = true;
+        }
+      });
+      titleInput.addEventListener("input", function () {
+        if (
+          mbtiInput.value != "" ||
+          enneagramInput.value != "" ||
+          zodiacInput.value != "" ||
+          commentInput.value != "" ||
+          titleInput.value != ""
+        ) {
+          commentSubmitButton.style.color = "#4edcd8";
+          commentSubmitButton.disabled = false;
+        } else {
+          commentSubmitButton.style.color = "#e0e0e0";
+          commentSubmitButton.disabled = true;
+        }
+      });
+      mbtiInput.addEventListener("change", function () {
+        if (
+          mbtiInput.value != "" ||
+          enneagramInput.value != "" ||
+          zodiacInput.value != "" ||
+          commentInput.value != "" ||
+          titleInput.value != ""
+        ) {
+          commentSubmitButton.style.color = "#4edcd8";
+          commentSubmitButton.disabled = false;
+        } else {
+          commentSubmitButton.style.color = "#e0e0e0";
+          commentSubmitButton.disabled = true;
+        }
+      });
+      enneagramInput.addEventListener("change", function () {
+        if (
+          mbtiInput.value != "" ||
+          enneagramInput.value != "" ||
+          zodiacInput.value != "" ||
+          commentInput.value != "" ||
+          titleInput.value != ""
+        ) {
+          commentSubmitButton.style.color = "#4edcd8";
+          commentSubmitButton.disabled = false;
+        } else {
+          commentSubmitButton.style.color = "#e0e0e0";
+          commentSubmitButton.disabled = true;
+        }
+      });
+      zodiacInput.addEventListener("change", function () {
+        if (
+          mbtiInput.value != "" ||
+          enneagramInput.value != "" ||
+          zodiacInput.value != "" ||
+          commentInput.value != "" ||
+          titleInput.value != ""
+        ) {
+          commentSubmitButton.style.color = "#4edcd8";
+          commentSubmitButton.disabled = false;
+        } else {
+          commentSubmitButton.style.color = "#e0e0e0";
+          commentSubmitButton.disabled = true;
+        }
+      });
+    }
+    handleSendButton();
+
+    //toggel like button color when clicked and add 1 to like count when clicked and remove 1 from like count when clicked again
+    let likeButton = document.querySelectorAll(".heart-like-button");
+    likeButton.forEach((button) => {
+      button.addEventListener("click", function () {
+        if (button.style.color == "rgb(78, 220, 216)") {
+          button.style.color = "#6b6a6a";
+        } else {
+          button.style.color = "#4edcd8";
+        }
+      });
     });
   </script>
 </div>
