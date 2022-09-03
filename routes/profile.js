@@ -45,12 +45,58 @@ const commentData = [
     zodiac: "",
   },
 ];
+const updateCommentData = (data) => {
+  commentData.push(data);
+};
 module.exports = function () {
-  router.get("/*", function (req, res, next) {
+  router.get("/", function (req, res, next) {
+    let data = commentData;
+    let button = "all";
+    if (req.query.filter) {
+      switch (req.query.filter) {
+        case "all":
+          data = commentData;
+          button = "all";
+          break;
+        case "Enneagram":
+          data = data.filter((item) => item.enneagram);
+          button = "Enneagram";
+          break;
+        case "zodiac":
+          data = data.filter((item) => item.zodiac);
+          button = "zodiac";
+          break;
+        case "mbti":
+          data = data.filter((item) => item.mbti);
+          button = "mbti";
+          break;
+        default:
+          data = commentData;
+          button = "all";
+          break;
+      }
+    }
     res.render("profile_template", {
       profile: profiles[0],
-      commentData: commentData,
+      commentData: data,
+      button: button,
     });
   });
+  router.post("/post", function (req, res, next) {
+    let data = {
+      comment: req.body.comment,
+      enneagram: req.body.Enneagram,
+      createdOn: new Date(),
+      mbti: req.body.mbti,
+      profile:
+        "http://esq.h-cdn.co/assets/17/10/1280x1280/square-1488906206-daniel-craig.jpg",
+      title: req.body.title,
+      name: "Daniel Craig",
+      zodiac: req.body.Zodiac,
+    };
+    updateCommentData(data);
+    res.redirect("back");
+  });
+
   return router;
 };
