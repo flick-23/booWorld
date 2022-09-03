@@ -1,3 +1,8 @@
+<style>
+  .comment-filter-button.active {
+    color: #4edcd8;
+  }
+</style>
 <div>
   <!-- HEADING -->
   <div class="comments">
@@ -19,27 +24,71 @@
 
   <!-- FILTER BUTTONS -->
   <div class="comment-filters">
-    <div class="all">
-      <button class="comment-filter-button">All</button>
-    </div>
-    <div class="mbti">
-      <button class="comment-filter-button">MBTI</button>
-    </div>
-    <div class="mbti">
-      <button class="comment-filter-button">Enneagram</button>
-    </div>
-    <div class="zodiac">
-      <button class="comment-filter-button">Zodiac</button>
-    </div>
+    <form method="get" accept="/" class="all">
+      <% if (button == "all") { %>
+      <button class="comment-filter-button active" name="filter" value="all">
+        All
+      </button>
+      <% } else { %>
+      <button name="filter" value="all" class="comment-filter-button">
+        All
+      </button>
+      <% } %>
+    </form>
+    <form class="mbti">
+      <% if (button == "mbti") { %>
+      <button class="comment-filter-button active" name="filter" value="mbti">
+        MBTI
+      </button>
+      <% } else { %>
+      <button name="filter" value="mbti" class="comment-filter-button">
+        MBTI
+      </button>
+      <% } %>
+    </form>
+    <form class="mbti">
+      <% if (button == "Enneagram") { %>
+      <button
+        class="comment-filter-button active"
+        name="filter"
+        value="Enneagram"
+      >
+        Enneagram
+      </button>
+      <% } else { %>
+      <button name="filter" value="Enneagram" class="comment-filter-button">
+        Enneagram
+      </button>
+      <% } %>
+    </form>
+    <form class="zodiac">
+      <% if (button == "zodiac") { %>
+      <button class="comment-filter-button active" name="filter" value="zodiac">
+        Zodiac
+      </button>
+      <% } else { %>
+      <button name="filter" value="zodiac" class="comment-filter-button">
+        Zodiac
+      </button>
+      <% } %>
+    </form>
   </div>
   <!-- SORT BUTTONS -->
   <div class="comment-sort">
-    <div class="best">
-      <button class="comment-sort-button best-sort">best</button>
-    </div>
-    <div class="recent">
-      <button class="comment-sort-button recent-sort">recent</button>
-    </div>
+    <form method="get" class="best">
+      <button name="sorting" value="best" class="comment-sort-button best-sort">
+        best
+      </button>
+    </form>
+    <form method="get" action="/" class="recent">
+      <button
+        name="sorting"
+        value="recent"
+        class="comment-sort-button recent-sort"
+      >
+        recent
+      </button>
+    </form>
   </div>
   <!-- COMMENT CARDS -->
   <div class="comment-main">
@@ -58,80 +107,83 @@
             <h5 id="user-name">James</h5>
           </div>
         </div>
-        <div class="comment-body">
-          <div class="comment-title">
-            <input name="title-input" class="title-input" placeholder="Title" />
+        <form action="/post" method="post">
+          <div class="comment-body">
+            <div class="comment-title">
+              <input name="title" class="title-input" placeholder="Title" />
+            </div>
+            <div class="voting">
+              <select id="voting-mbti" class="voting-mbti" name="mbti">
+                <option value="" disabled selected>MBTI</option>
+                <option value="INFP">INFP</option>
+                <option value="INFJ">INFJ</option>
+                <option value="ENFP">ENFP</option>
+                <option value="INTJ">INTJ</option>
+                <option value="INTP">INTP</option>
+                <option value="ENTP">ENTP</option>
+                <option value="ENTJ">ENTJ</option>
+                <option value="ISFP">ISFP</option>
+                <option value="ISFJ">ISFJ</option>
+                <option value="ESFP">ESFP</option>
+                <option value="ESFJ">ESFJ</option>
+                <option value="ISTP">ISTP</option>
+                <option value="ISTJ">ISTJ</option>
+                <option value="ESTP">ESTP</option>
+                <option value="ESTJ">ESTJ</option>
+              </select>
+              <select class="voting-enneagram" name="Enneagram">
+                <option style="background: #13a6a2" value="" selected>
+                  Enneagram
+                </option>
+                <option value="1w2">1w2</option>
+                <option value="2w3">2w3</option>
+                <option value="3w2">3w2</option>
+                <option value="3w4">3w4</option>
+                <option value="4w3">4w3</option>
+                <option value="4w5">4w5</option>
+                <option value="5w4">5w4</option>
+                <option value="5w6">5w6</option>
+                <option value="6w5">6w5</option>
+                <option value="6w7">6w7</option>
+                <option value="7w6">7w6</option>
+                <option value="7w8">7w8</option>
+                <option value="8w7">8w7</option>
+                <option value="8w9">8w9</option>
+                <option value="9w8">9w8</option>
+                <option value="9w1">9w1</option>
+              </select>
+              <select class="voting-zodiac" name="Zodiac">
+                <option value="" selected disabled>Zodiac</option>
+                <option value="Aries">Aries</option>
+                <option value="Taurus">Taurus</option>
+                <option value="Gemini">Gemini</option>
+                <option value="Cancer">Cancer</option>
+                <option value="Leo">Leo</option>
+                <option value="Virgo">Virgo</option>
+                <option value="Libra">Libra</option>
+                <option value="Scorpio">Scorpio</option>
+                <option value="Sagittarius">Sagittarius</option>
+                <option value="Capricorn">Capricorn</option>
+                <option value="Aquarius">Aquarius</option>
+                <option value="Pisces">Pisces</option>
+              </select>
+            </div>
+            <div class="comment-text">
+              <textarea
+                id="comment-input"
+                class="comment-input"
+                style="overflow: hidden"
+                placeholder="Share your thoughts by commenting here"
+                name="comment"
+              ></textarea>
+            </div>
+            <div class="comment-button">
+              <button onclick="handleSubmit()" class="comment-submit-button">
+                <span class="material-icons"> send </span>
+              </button>
+            </div>
           </div>
-          <div class="voting">
-            <select id="voting-mbti" class="voting-mbti" name="mbti">
-              <option value="" disabled selected>MBTI</option>
-              <option value="INFP">INFP</option>
-              <option value="INFJ">INFJ</option>
-              <option value="ENFP">ENFP</option>
-              <option value="INTJ">INTJ</option>
-              <option value="INTP">INTP</option>
-              <option value="ENTP">ENTP</option>
-              <option value="ENTJ">ENTJ</option>
-              <option value="ISFP">ISFP</option>
-              <option value="ISFJ">ISFJ</option>
-              <option value="ESFP">ESFP</option>
-              <option value="ESFJ">ESFJ</option>
-              <option value="ISTP">ISTP</option>
-              <option value="ISTJ">ISTJ</option>
-              <option value="ESTP">ESTP</option>
-              <option value="ESTJ">ESTJ</option>
-            </select>
-            <select class="voting-enneagram" name="Enneagram">
-              <option style="background: #13a6a2" value="" selected>
-                Enneagram
-              </option>
-              <option value="1w2">1w2</option>
-              <option value="2w3">2w3</option>
-              <option value="3w2">3w2</option>
-              <option value="3w4">3w4</option>
-              <option value="4w3">4w3</option>
-              <option value="4w5">4w5</option>
-              <option value="5w4">5w4</option>
-              <option value="5w6">5w6</option>
-              <option value="6w5">6w5</option>
-              <option value="6w7">6w7</option>
-              <option value="7w6">7w6</option>
-              <option value="7w8">7w8</option>
-              <option value="8w7">8w7</option>
-              <option value="8w9">8w9</option>
-              <option value="9w8">9w8</option>
-              <option value="9w1">9w1</option>
-            </select>
-            <select class="voting-zodiac" name="Zodiac">
-              <option value="" selected disabled>Zodiac</option>
-              <option value="Aries">Aries</option>
-              <option value="Taurus">Taurus</option>
-              <option value="Gemini">Gemini</option>
-              <option value="Cancer">Cancer</option>
-              <option value="Leo">Leo</option>
-              <option value="Virgo">Virgo</option>
-              <option value="Libra">Libra</option>
-              <option value="Scorpio">Scorpio</option>
-              <option value="Sagittarius">Sagittarius</option>
-              <option value="Capricorn">Capricorn</option>
-              <option value="Aquarius">Aquarius</option>
-              <option value="Pisces">Pisces</option>
-            </select>
-          </div>
-          <div class="comment-text">
-            <textarea
-              id="comment-input"
-              class="comment-input"
-              style="overflow: hidden"
-              placeholder="Share your thoughts by commenting here"
-            ></textarea>
-          </div>
-          <div class="comment-button">
-            <button onclick="handleSubmit()" class="comment-submit-button">
-              <span class="material-icons"> send </span>
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -208,96 +260,6 @@
         commentInput.classList.remove("glow-card");
       }, 1000);
 
-      let comment = document.querySelector("#comment-input").value;
-      let title = document.querySelector(".title-input").value;
-      let mbti = document.querySelector("#voting-mbti").value;
-      let enneagram = document.querySelector(".voting-enneagram").value;
-      let zodiac = document.querySelector(".voting-zodiac").value;
-      let name = document.querySelector("#user-name").innerHTML;
-      let profile = document.querySelector(".profile-image").src;
-      let commentObj = {
-        comment: comment,
-        title: title,
-        mbti: mbti,
-        enneagram: enneagram,
-        zodiac: zodiac,
-        name: name,
-        profile: profile,
-      };
-      //display the new comment along with mbti enneagram and zodiac if selected by user in the comment section of the page
-      let commentCard = document.createElement("div");
-      commentCard.classList.add("comment-card");
-      let commentDiv = document.createElement("div");
-      commentDiv.classList.add("comment");
-      let commentHeader = document.createElement("div");
-      commentHeader.classList.add("comment-header");
-      let userProfileImage = document.createElement("div");
-      userProfileImage.classList.add("user-profile-image");
-      let profileImage = document.createElement("img");
-      profileImage.classList.add("profile-image");
-      profileImage.src = commentObj.profile;
-      let userName = document.createElement("div");
-      userName.classList.add("user-name");
-      let userNameH5 = document.createElement("h5");
-      userNameH5.innerHTML = commentObj.user;
-      let commentBody = document.createElement("div");
-      commentBody.classList.add("comment-body");
-      let commentTitle = document.createElement("div");
-      commentTitle.classList.add("comment-title");
-      let commentTitleH5 = document.createElement("h5");
-      commentTitleH5.innerHTML = commentObj.title;
-      let voting = document.createElement("div");
-      voting.classList.add("voting");
-      let mbtiButton = document.createElement("button");
-      mbtiButton.classList.add("voting-mbti");
-      mbtiButton.innerHTML = commentObj.mbti;
-      let enneagramButton = document.createElement("button");
-      enneagramButton.classList.add("voting-enneagram");
-      enneagramButton.innerHTML = commentObj.enneagram;
-      let zodiacButton = document.createElement("button");
-      zodiacButton.classList.add("voting-zodiac");
-      zodiacButton.innerHTML = commentObj.zodiac;
-      let commentText = document.createElement("div");
-      commentText.classList.add("comment-text");
-      let commentTextP = document.createElement("p");
-      commentTextP.innerHTML = commentObj.comment;
-      commentText.appendChild(commentTextP);
-      commentTitle.appendChild(commentTitleH5);
-      commentBody.appendChild(commentTitle);
-      //if mbti is selected by user then display it in the comment section
-      if (commentObj.mbti) {
-        voting.appendChild(mbtiButton);
-        //make the opactiy of the button 100%
-        mbtiButton.style.opacity = "100%";
-      }
-      //if enneagram is selected by user then display it in the comment section
-      if (commentObj.enneagram) {
-        voting.appendChild(enneagramButton);
-        //make the opactiy of the button 100%
-        enneagramButton.style.opacity = "100%";
-      }
-      //if zodiac is selected by user then display it in the comment section
-      if (commentObj.zodiac) {
-        voting.appendChild(zodiacButton);
-        //make the opactiy of the button 100%
-        zodiacButton.style.opacity = "100%";
-      }
-      commentBody.appendChild(voting);
-      commentBody.appendChild(commentText);
-      userProfileImage.appendChild(profileImage);
-      userName.appendChild(userNameH5);
-      commentHeader.appendChild(userProfileImage);
-      commentHeader.appendChild(userName);
-      commentDiv.appendChild(commentHeader);
-      commentDiv.appendChild(commentBody);
-      commentCard.appendChild(commentDiv);
-      document.querySelector(".comment-section").appendChild(commentCard);
-      //clear the input fields
-      document.querySelector("#comment-input").value = "";
-      document.querySelector(".title-input").value = "";
-      document.querySelector("#voting-mbti").value = "";
-      document.querySelector(".voting-enneagram").value = "";
-      document.querySelector(".voting-zodiac").value = "";
       //make the opacity of the mbti enneagram and zodiac button in input fields 30%
       document.querySelector("#voting-mbti").style.opacity = "30%";
       document.querySelector(".voting-enneagram").style.opacity = "30%";
