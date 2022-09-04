@@ -46,7 +46,7 @@
       </button>
       <% } %>
     </form>
-    <form class="mbti">
+    <form class="enneagram">
       <% if (button == "Enneagram") { %>
       <button
         class="comment-filter-button active"
@@ -114,8 +114,8 @@
             </div>
             <div class="voting">
               <select id="voting-mbti" class="voting-mbti" name="mbti">
-                <option value="" disabled selected>MBTI</option>
-                <option value="INFP">INFP</option>
+                <option value="" selected>MBTI</option>
+                <option style="background: #4edcd8" value="INFP">INFP</option>
                 <option value="INFJ">INFJ</option>
                 <option value="ENFP">ENFP</option>
                 <option value="INTJ">INTJ</option>
@@ -135,8 +135,18 @@
                 <option style="background: #13a6a2" value="" selected>
                   Enneagram
                 </option>
-                <option value="1w2">1w2</option>
-                <option value="2w3">2w3</option>
+                <option
+                  style="background: url(../../public/static/wing.png)"
+                  value="1w2"
+                >
+                  1w2
+                </option>
+                <option
+                  style="background: url(../../public/static/wing.png)"
+                  value="2w3"
+                >
+                  2w3
+                </option>
                 <option value="3w2">3w2</option>
                 <option value="3w4">3w4</option>
                 <option value="4w3">4w3</option>
@@ -153,7 +163,9 @@
                 <option value="9w1">9w1</option>
               </select>
               <select class="voting-zodiac" name="Zodiac">
-                <option value="" selected disabled>Zodiac</option>
+                <option style="background: #000" value="" selected>
+                  Zodiac
+                </option>
                 <option value="Aries">Aries</option>
                 <option value="Taurus">Taurus</option>
                 <option value="Gemini">Gemini</option>
@@ -252,6 +264,7 @@
       let main = document.querySelector(".comment-main");
       main.classList.toggle("ds-none");
     }
+
     function handleSubmit() {
       //on submit the borders should glow #4edcd8 for 1 second
       let commentInput = document.querySelector(".add");
@@ -271,6 +284,7 @@
     let enneagram = document.querySelector(".voting-enneagram");
     let zodiac = document.querySelector(".voting-zodiac");
 
+    //update the opacity on change of the select option
     mbti.addEventListener("change", function () {
       if (mbti.value != "") {
         mbti.style.opacity = "100%";

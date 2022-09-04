@@ -35,8 +35,8 @@
     align-items: center;
   }
   .comment-sort-button {
-    background-color: #4edcd8;
-    color: white;
+    background-color: #ffffff;
+    color: #000;
     border: none;
     outline: none;
     text-align: center;
@@ -49,9 +49,11 @@
     padding: 5px 15px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
+  .comment-sort-button.active {
+    background-color: #4edcd8;
+    color: white;
+  }
   .recent-sort {
-    background-color: #ffffff;
-    color: #000;
     margin-left: 10px;
   }
 
@@ -209,6 +211,17 @@
     background-color: transparent;
     color: grey;
     border: none;
+  }
+
+  .business,
+  .technology {
+    background-color: #4edcd8;
+    border-radius: 40px;
+    padding: 2px 13px;
+    font-weight: 500;
+  }
+  .technology {
+    margin-left: 10px;
   }
 
   select {
@@ -1254,7 +1267,8 @@
     color: #fff;
   }
   body:not(.header--menu-open) .black .header-nav-folder-content {
-    background-color: #000;
+    /* background-color: #000; */
+    border-top: 1px solid;
   }
   body:not(.header--menu-open) .black .header-nav-wrapper a {
     color: #fff;
@@ -1275,7 +1289,8 @@
   body:not(.header--menu-open) .black .burger-inner .top-bun,
   body:not(.header--menu-open) .black .burger-inner .patty,
   body:not(.header--menu-open) .black .burger-inner .bottom-bun {
-    background-color: #fff;
+    /* background-color: #fff; */
+    border-top: 1px solid;
   }
   body:not(.header--menu-open) .black .header-actions .icon--stroke svg {
     stroke: #fff;
@@ -1312,7 +1327,8 @@
     background-color: #fff;
   }
   body.header--menu-open .header.black .header-nav-folder-content {
-    background-color: #000;
+    /* background-color: #000; */
+    border-top: 1px solid;
   }
   body.header--menu-open .header.black .header-nav-wrapper a {
     color: #fff;
@@ -1345,7 +1361,8 @@
     color: #fff;
   }
   .header-menu.black .header-menu-bg {
-    background-color: #000;
+    /* background-color: #000; */
+    border-top: 1px solid;
   }
   .header-menu.black .header-menu-nav a:not(.btn) {
     color: #fff;

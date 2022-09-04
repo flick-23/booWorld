@@ -95,7 +95,10 @@ module.exports = function () {
       zodiac: req.body.Zodiac,
     };
     updateCommentData(data);
-    res.redirect("back");
+    //delay of 1 second
+    setTimeout(() => {
+      res.redirect("back");
+    }, 1000);
   });
 
   return router;
