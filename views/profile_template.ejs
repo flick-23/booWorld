@@ -30,6 +30,7 @@
                       </div>
                       <div class="col sqs-col-trait">
                         <div class="row sqs-row">
+                          <!-- MBTI -->
                           <div class="col sqs-col-sub-trait">
                             <div class="trait">
                               <p class="center" style="height: 25%; line-height: 1">MBTI</p>
@@ -42,36 +43,42 @@
                               <p class="trait-font center" style="height: 40%"><%= profile.enneagram %></p>
                             </div>
                           </div>
-                          <div class="col sqs-col-sub-trait">
+                           <!-- Instrinct Variant -->
+                           <div class="col sqs-col-sub-trait">
                             <div class="trait">
-                              <p class="center" style="height: 25%; line-height: 1">Socionics</p>
-                              <p class="trait-font center" style="height: 40%"><%= profile.socionics %></p>
-                            </div>
-                          </div>
-                          <div class="col sqs-col-sub-trait">
-                            <div class="trait">
-                              <p class="center" style="height: 25%; line-height: 1">Big 5 Sloan</p>
-                              <p class="trait-font center" style="height: 40%"><%= profile.sloan %></p>
-                            </div>
-                          </div>
-                          <div class="col sqs-col-sub-trait">
-                            <div class="trait">
-                              <p class="center" style="height: 25%; line-height: 1">Instinctual Variant</p>
+                              <p class="center" style="height: 25%; line-height: 1">Instinctual <br/>Variant</p>
                               <p class="trait-font center" style="height: 40%"><%= profile.variant %></p>
                             </div>
                           </div>
+                          <!-- Tritype -->
                           <div class="col sqs-col-sub-trait">
                             <div class="trait">
                               <p class="center" style="height: 25%; line-height: 1">Tritype</p>
                               <p class="trait-font center" style="height: 40%"><%= profile.tritype %></p>
                             </div>
                           </div>
+                          <!-- SOCIONICS -->
                           <div class="col sqs-col-sub-trait">
                             <div class="trait">
-                              <p class="center" style="height: 25%; line-height: 1">Attitudinal Psyche</p>
+                              <p class="center" style="height: 25%; line-height: 1">Socionics</p>
+                              <p class="trait-font center" style="height: 40%"><%= profile.socionics %></p>
+                            </div>
+                          </div>
+                          <!-- SLOAN -->
+                          <div class="col sqs-col-sub-trait">
+                            <div class="trait">
+                              <p class="center" style="height: 25%; line-height: 1">Big 5 Sloan</p>
+                              <p class="trait-font center" style="height: 40%"><%= profile.sloan %></p>
+                            </div>
+                          </div> 
+                          <!-- Attitudinal Psyche -->
+                          <div class="col sqs-col-sub-trait">
+                            <div class="trait">
+                              <p class="center" style="height: 25%; line-height: 1">Attitudinal <br/>Psyche</p>
                               <p class="trait-font center" style="height: 40%"><%= profile.psyche %></p>
                             </div>
                           </div>
+                          <!-- Temperament -->
                           <div class="col sqs-col-sub-trait">
                             <div class="trait">
                               <p class="center" style="height: 25%; line-height: 1">Temperament</p>
@@ -84,7 +91,7 @@
                     </div>
                     <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-8d8156722d8e328e16b8">
                       <div class="sqs-block-content">
-                        <p class="" style="white-space:pre-wrap;"><%= profile.description %>
+                        <p class="" style="white-space:pre-wrap; font-weight: 450;"><%= profile.description %>
                         </p>
                       </div>
                     </div>
